@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Namoro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #333; /* Cor de fundo escura */
+            color: white; /* Cor do texto */
+        }
+        #pedido {
+            margin-top: 100px;
+        }
+        #botaoSim, #botaoNao {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        #botaoSim {
+            background-color: #4CAF50; /* Verde */
+            border: none;
+            color: white;
+        }
+        #botaoNao {
+            background-color: #f44336; /* Vermelho */
+            border: none;
+            color: white;
+            position: relative; /* Mantém a posição relativa */
+        }
+        #agradecimento {
+            display: none;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="pedido">
+        <h1>Quer namorar comigo?</h1>
+        <button id="botaoSim">Sim</button>
+        <button id="botaoNao">Não</button>
+    </div>
+
+    <div id="agradecimento">
+        <h2>Obrigado por aceitar!</h2>
+        <p>Por favor, insira sua assinatura:</p>
+        <input type="text" id="assinaturaInput">
+        <button id="confirmarAssinatura">Confirmar</button>
+        <p id="mensagemErro" style="color: red; display: none;">Ocorreu um erro. A assinatura não é da pessoa certa.</p>
+    </div>
+
+    <script>
+        var botaoSim = document.getElementById('botaoSim');
+        var agradecimento = document.getElementById('agradecimento');
+        var botaoNao = document.getElementById('botaoNao');
+        var assinaturaInput = document.getElementById('assinaturaInput');
+        var confirmarAssinaturaBtn = document.getElementById('confirmarAssinatura');
+        var mensagemErro = document.getElementById('mensagemErro');
+
+        function mostrarAgradecimento() {
+            agradecimento.style.display = 'block';
+        }
+
+        function verificarAssinatura() {
+            var assinatura = assinaturaInput.value.toLowerCase(); // Convertendo para minúsculas
+            if (assinatura === 'yaya' || assinatura === 'yasmim') {
+                alert('Assinatura aceita!'); // Aqui você pode adicionar qualquer ação desejada
+            } else {
+                mensagemErro.style.display = 'block';
+            }
+        }
+
+        botaoSim.addEventListener('click', function() {
+            mostrarAgradecimento();
+        });
+
+        confirmarAssinaturaBtn.addEventListener('click', function() {
+            verificarAssinatura();
+        });
+
+        // Função para mover o botão "Não" a cada 500ms
+        setInterval(function() {
+            var botaoNao = document.getElementById('botaoNao');
+            var alturaTela = window.innerHeight;
+            var larguraTela = window.innerWidth;
+            var novaAltura = Math.random() * (alturaTela - 50);
+            var novaLargura = Math.random() * (larguraTela - 100);
+            botaoNao.style.position = 'absolute';
+            botaoNao.style.top = novaAltura + 'px';
+            botaoNao.style.left = novaLargura + 'px';
+        }, 500);
+    </script>
+</body>
+</html>
